@@ -13,6 +13,14 @@ const eventSchema = new mongoose.Schema(
            type: String,
            required: true
         },
+        createrName: {
+           type: String,
+           required: true
+        },
+        image: {
+            type: String,
+            require: true
+        },
         createdBy:{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',

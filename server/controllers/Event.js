@@ -1,11 +1,14 @@
 const { default: mongoose } = require("mongoose");
 const Event = require("../models/Event");
 const User = require("../models/User");
+const { uploadImageToCloudinary } = require("../utils/imageUploader");
 
 exports.createEvent = async (req, res) => {
   try {
     const userId = req.user.id;
-    const { eventName, description, date } = req.body;
+    const { eventName, description, date, createrName } = req.body;
+    const thumbnail = req.files.image
+
     // console.log("entered", userId);
     //validation
     if (!eventName || !date) {
@@ -15,12 +18,19 @@ exports.createEvent = async (req, res) => {
       });
     }
 
+    const thumbnailImage = await uploadImageToCloudinary(
+      thumbnail,
+      process.env.FOLDER_NAME
+    )
+ 
     //create db entry
     const event = await Event.create({
       eventName,
       description,
       date,
-      createdBy: userId
+      createrName,
+      createdBy: userId,
+      image: thumbnailImage.secure_url
     });
 
     //userSchema updated
@@ -45,7 +55,7 @@ exports.createEvent = async (req, res) => {
     console.log(error);
     return res.status(500).json({
       success: false,
-      message: "User cannot be registered. Please try again",
+      message: "Event cannot be created. Please try again",
     });
   }
 };
@@ -70,16 +80,22 @@ exports.updateEvent = async (req, res) => {
           message:"You are not authorized to update this event"
         })
       }
-      const {eventName, date} = req.body;
+      const {eventName, date, description, createrName} = req.body;
       // console.log("updates are", typeof(updates))
       if(eventName) {
          event.eventName = eventName
+      }
+      else if(description) {
+        event.description = description
+      }
+      else if(createrName) {
+        event.createrName = createrName
       }
       else {
         event.date = date
       }
       const updatedEvent = await event.save()
-      console.log(updatedEvent)
+      // console.log(updatedEvent)
 
       return res.json({
         success:true,
@@ -140,7 +156,11 @@ exports.getAllEvent = async (req, res) => {
     const allEvents = await Event.find({},
       {
         eventName: true,
-        date: true
+        date: true,
+        description:true,
+        createdBy: true,
+        image: true,
+        createrName:true
       }
     )
     return res.status(200).json({

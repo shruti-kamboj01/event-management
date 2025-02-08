@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 exports.signUp = async (req, res) => {
   try {
     const { name, userName, password } = req.body;
-
+    // console.log(name);
     //validation
     if (!name || !userName || !password) {
       return res.status(403).json({
@@ -19,7 +19,7 @@ exports.signUp = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({
         success: false,
-        message: "User is already resgisted",
+        message: "Username is already resgisted. Try a different username if you're new.",
       });
     }
 
@@ -50,7 +50,6 @@ exports.signUp = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { userName, password } = req.body;
-
     //validation
     if (!userName || !password) {
       return res.status(403).json({
