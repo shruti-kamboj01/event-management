@@ -11,7 +11,7 @@ Prerequisites
    1.  https://github.com/shruti-kamboj01/event-management.git 
    2.  cd event-management
 
-3. Backend Setup
+3. Backend Setup 
    1. cd server 
    2. npm intall 
    3. Create .env file inside server/ and add: 
@@ -23,9 +23,11 @@ Prerequisites
       5. CLOUD_NAME = cloud_name 
       7. API_SECRET = cloud_api_secret 
    4. npm start/npm run dev
+   5. Hosted on -> https://event-management-1liu.onrender.com
 
 4. Frontend Setup
    1. npm install
-   2. npm run dev   
+   2. npm run dev
+   3. Hosted on -> https://event-management-shruti-kambojs-projects.vercel.app/  
 
    
