@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../components/Navbar";
 import { allEvents } from "../apis/Event";
 import Cards from "../components/Cards";
+import { socketContext } from "../App";
 
 const Dashboard = () => {
-  const { token } = useSelector((state) => state.auth);
-
+  const token = JSON.parse(localStorage.getItem("token"));
+  const user = JSON.parse(localStorage.getItem("user"));
   const [events, setEvents] = useState([]);
-
+  const { connectSocket } = useContext(socketContext);
+  //  console.log(user)
+  const userId = user._id;
+  //  console.log("user", user)
   const fetchData = async () => {
     const response = await allEvents();
     setEvents(response.allEvents);
   };
-  console.log(events)
+  // console.log(events)
   useEffect(() => {
     fetchData();
-  }, [events]);
+    connectSocket()
+  }, []);
   const today = new Date();
   const upcomingEvents = events
     .filter((event) => new Date(event.date) >= today)
@@ -35,18 +39,18 @@ const Dashboard = () => {
         {" "}
         Upcoming Events
       </h2>
-      <div className="text-black sm:w-3 md:w-full w-11/12 mx-auto place-items-center grid space-y-6 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 bg-amber-50 ">
+      <div className="text-black sm:w-3 md:w-full w-11/12 mx-auto place-items-center grid space-y-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  bg-amber-50 ">
         {upcomingEvents.map((event, i) => {
-          return <Cards {...event} />;
+          return <Cards {...event} userId={userId} />;
         })}
       </div>
       <h2 className="text-amber-900 uppercase font-mono mx-auto w-11/12 text-3xl font-bold text-center mb-2 mt-2">
         Past Events
       </h2>
-      <div className="text-black sm:w-3 md:w-full w-11/12 mx-auto place-items-center grid space-y-6 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 bg-amber-50 ">
+      <div className="text-black sm:w-3 md:w-full w-11/12 mx-auto place-items-center grid space-y-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  bg-amber-50 ">
         {pastEvents.length > 0 ? (
           pastEvents.map((event, i) => {
-            return <Cards {...event} />;
+            return <Cards {...event} userId={userId} />;
           })
         ) : (
           <div className="text-amber-600 font-mono mx-auto w-11/12 text-lg font-bold text-center mb-2 mt-4">

@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router";
-import { login} from "../apis/User";
-import { useDispatch } from "react-redux";
-import { setToken } from "../features/authSlice";
-
+import { login } from "../apis/User";
+import { socketContext } from "../App";
 const Login = () => {
+  const { connectSocket } = useContext(socketContext);
   const navigate = useNavigate();
-  const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false);
   const [formdata, setFormdata] = useState({ userName: "", password: "" });
   const changeHandler = (e) => {
@@ -21,10 +19,10 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const res = await login(formdata);
-    const token = res.token
-    dispatch(setToken(token))
-    localStorage.setItem ("token", JSON.stringify(token))
-    navigate('/dashboard')
+    const token = res.token;
+    localStorage.setItem("token", JSON.stringify(token));
+    connectSocket();
+    navigate("/dashboard");
     setFormdata({
       userName: "",
       password: "",
@@ -73,11 +71,7 @@ const Login = () => {
           </span>
         </label>
         <div className="mt-4">
-          <button
-            className="btn btn-outline btn-warning"
-            
-            type="submit"
-          >
+          <button className="btn btn-outline btn-warning" type="submit">
             Login
           </button>
         </div>

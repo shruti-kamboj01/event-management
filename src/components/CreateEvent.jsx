@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { createEvent } from "../apis/Event";
-import { useSelector } from "react-redux";
 
 const CreateEvent = ({ setModal }) => {
   const [preview, setPreview] = useState(null);
@@ -11,7 +10,8 @@ const CreateEvent = ({ setModal }) => {
     createrName: "",
     file: "",
   });
-  const { token } = useSelector((state) => state.auth);
+  const token = JSON.parse(localStorage.getItem("token"))
+  // const { token } = useSelector((state) => state.auth);
   //  console.log("token", token)
   const changeHandler = (e) => {
     const { value, name, files } = e.target;
