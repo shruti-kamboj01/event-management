@@ -21,9 +21,14 @@ const Navbar = () => {
     }
   }
 
+  function logoutHandler() {
+    localStorage.removeItem("token")
+    navigate('/')
+  }
+
   return (
     <div className="flex justify-between w-11/12 mx-auto">
-      <div className="flex gap-3 mt-4 cursor-pointer text-amber-300 text-base font-semibold">
+      <div className="flex gap-1.5 mt-4 cursor-pointer text-amber-300 lg:text-base md:text-base sm: text-sm font-semibold">
         <h1>Profile</h1>
         <h1 className=""
           onClick={createEventHandler}
@@ -31,26 +36,26 @@ const Navbar = () => {
       </div>
       
         {login == true ? (
-          <div className="mt-2">
+          <div className="md:mt-2 lg:mt-2 sm:mt-1 ">
             <button
-              className="btn btn-outline btn-warning"
-              onClick={() => navigate("/dashboard")}
+              className="btn btn-outline btn-xs sm:btn-sm md:btn-md md:mt-2 lg:mt-2 sm: mt-2.5 btn-warning"
+              onClick={logoutHandler}
               type="submit"
             >
               Logout
             </button>
           </div>
         ) : (
-          <div className="flex justify-between gap-2 mt-2.5">
+          <div className="flex justify-between gap-2 md:mt-2 lg:mt-2 sm: mt-2.5">
             <button
-              className="btn btn-outline btn-warning"
+              className="btn btn-xs sm:btn-sm md:btn-md btn-outline  btn-warning"
               onClick={() => navigate("/signup")}
               type="submit"
             >
               Signup
             </button>
             <button
-              className="btn btn-outline btn-warning"
+              className="btn btn-xs sm:btn-sm md:btn-md btn-outline btn-warning"
               onClick={() => navigate("/login")}
               type="submit"
             >

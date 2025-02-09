@@ -19,7 +19,7 @@ const eventSchema = new mongoose.Schema(
         },
         image: {
             type: String,
-            require: true
+           
         },
         createdBy:{
             type: mongoose.Schema.Types.ObjectId,
