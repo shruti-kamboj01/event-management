@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router";
 import { login } from "../apis/User";
@@ -15,6 +15,16 @@ const Login = () => {
       [name]: value,
     }));
   };
+   
+  function check() {
+    if(!localStorage.getItem("user")) {
+      alert("Do signup first")
+      navigate('/signup')
+    }
+  }
+  useEffect(() => {
+     check() 
+  },[])
 
   const submitHandler = async (e) => {
     e.preventDefault();

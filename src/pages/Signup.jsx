@@ -81,7 +81,7 @@ const Signup = () => {
         </label>
         <div className="mt-4">
         <button className="btn btn-outline btn-warning"
-         onClick={() => navigate('/login')}
+         onClick={() => navigate('/')}
          type="submit"
         >Signup</button>
         </div>
