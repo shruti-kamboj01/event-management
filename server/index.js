@@ -16,13 +16,13 @@ dbConnect();
 cloudinaryConnect();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://event-management-blush-kappa.vercel.app/"],
+    origin: ["http://localhost:5173", "https://event-management-blush-kappa.vercel.app"],
     credentials: true,
   })
 );
 const socketIO = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "https://event-management-blush-kappa.vercel.app/"],
+    origin: ["http://localhost:5173", "https://event-management-blush-kappa.vercel.app"],
     credentials: true,
   },
 });
