@@ -16,6 +16,16 @@ const Login = () => {
     }));
   };
 
+   function check() {
+    if(!localStorage.getItem("user")) {
+      alert("Do signup first")
+      navigate('/signup')
+    }
+  }
+  useEffect(() => {
+     check() 
+  },[])
+
   const submitHandler = async (e) => {
     e.preventDefault();
     const res = await login(formdata);
