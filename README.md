@@ -4,8 +4,8 @@ A full-stack event management platform where users can create, manage, and atten
 
  Installation & Setup<br></br>
 1. Prerequisites  
- 1. Node.js (v18+ recommended) 
- 2. MongoDB (local or MongoDB Atlas)
+   1. Node.js (v18+ recommended) 
+   2. MongoDB (local or MongoDB Atlas)
 
 2. Clone the Repository
    1.  https://github.com/shruti-kamboj01/event-management.git 
