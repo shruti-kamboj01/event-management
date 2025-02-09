@@ -3,22 +3,21 @@ import { createEvent } from "../apis/Event";
 import { useSelector } from "react-redux";
 
 const CreateEvent = ({ setModal }) => {
-  const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [formdata, setformdata] = useState({
     eventName: "",
-    desc: "",
+    description: "",
     date: "",
     createrName: "",
     file: "",
   });
   const { token } = useSelector((state) => state.auth);
-//  console.log("token", token)
+  //  console.log("token", token)
   const changeHandler = (e) => {
     const { value, name, files } = e.target;
     //  console.log("files", files)
     if (files && files[0]) {
-        // console.log(files[0])
+      // console.log(files[0])
       setformdata((prev) => ({
         ...prev,
         [name]: files[0],
@@ -35,11 +34,20 @@ const CreateEvent = ({ setModal }) => {
       }));
     }
   };
-//    console.log("formdata", formdata)
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    const res = await createEvent(formdata, token)
-    // console.log("Form submitted:", formdata);
+    const res = await createEvent(formdata, token);
+    setformdata({
+      eventName: "",
+      description: "",
+      date: "",
+      createrName: "",
+      file: "",
+    });
+    if (formdata) {
+      alert("New event created");
+    }
   };
 
   return (
@@ -52,7 +60,7 @@ const CreateEvent = ({ setModal }) => {
           <form className="flex flex-col gap-y-2 " onSubmit={submitHandler}>
             <input
               type="file"
-              className=""
+              className="lg:w-fit md:w-fit"
               name="file"
               accept="image/*"
               onChange={changeHandler}
@@ -63,10 +71,15 @@ const CreateEvent = ({ setModal }) => {
                 alt="Preview"
                 style={{ width: "200px", marginTop: "10px" }}
               />
-              
             )}
-            <button className="btn btn-warning btn-outline text-white h-8 w-fit" type="button"
-            onClick={() => setPreview(null)}> X </button>
+            <button
+              className="btn btn-warning btn-outline text-white h-8 w-fit"
+              type="button"
+              onClick={() => setPreview(null)}
+            >
+              {" "}
+              X{" "}
+            </button>
             <label>
               <h2 className="text-amber-300">Event Name: </h2>
               <input
@@ -83,8 +96,8 @@ const CreateEvent = ({ setModal }) => {
               <input
                 type="text"
                 placeholder="Type here"
-                name="desc"
-                value={formdata.desc}
+                name="description"
+                value={formdata.description}
                 onChange={changeHandler}
                 className="input input-bordered input-warning w-full max-w-xs"
               />
@@ -116,7 +129,7 @@ const CreateEvent = ({ setModal }) => {
                 Submit
               </button>
               <button
-              type="button"
+                type="button"
                 className="btn btn-outline btn-warning"
                 onClick={() => setModal(false)}
               >
