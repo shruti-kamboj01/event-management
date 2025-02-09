@@ -3,7 +3,6 @@ import { socketContext } from "../App";
 
 const Cards = ({
   _id,
-  userId,
   image,
   eventName,
   description,
@@ -13,6 +12,8 @@ const Cards = ({
 }) => {
   const { socket } = useContext(socketContext);
   const [attendeeCount, setAttendeeCount] = useState(attendees.length);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user._id;
   useEffect(() => {
     socket.on("update_attendees", ({ eventId, attendees }) => {
       if (_id == eventId) {

@@ -5,13 +5,8 @@ import Cards from "../components/Cards";
 import { socketContext } from "../App";
 
 const Dashboard = () => {
-  const token = JSON.parse(localStorage.getItem("token"));
-  const user = JSON.parse(localStorage.getItem("user"));
   const [events, setEvents] = useState([]);
   const { connectSocket } = useContext(socketContext);
-  //  console.log(user)
-  const userId = user._id;
-  //  console.log("user", user)
   const fetchData = async () => {
     const response = await allEvents();
     setEvents(response.allEvents);
@@ -19,7 +14,7 @@ const Dashboard = () => {
   // console.log(events)
   useEffect(() => {
     fetchData();
-    connectSocket()
+    connectSocket();
   }, []);
   const today = new Date();
   const upcomingEvents = events
@@ -32,7 +27,7 @@ const Dashboard = () => {
   return (
     <div className="h-full lg:w-full bg-amber-50 overflow-y-auto">
       <div className="h-[12%] mb-4  bg-amber-900">
-        <Navbar token={token} />
+        <Navbar />
       </div>
 
       <h2 className="text-amber-900 uppercase font-mono mx-auto w-11/12 text-3xl font-bold text-center mb-2">
@@ -41,7 +36,7 @@ const Dashboard = () => {
       </h2>
       <div className="text-black sm:w-3 md:w-full w-11/12 mx-auto place-items-center grid space-y-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  bg-amber-50 ">
         {upcomingEvents.map((event, i) => {
-          return <Cards {...event} userId={userId} />;
+          return <Cards {...event} />;
         })}
       </div>
       <h2 className="text-amber-900 uppercase font-mono mx-auto w-11/12 text-3xl font-bold text-center mb-2 mt-2">
@@ -50,7 +45,7 @@ const Dashboard = () => {
       <div className="text-black sm:w-3 md:w-full w-11/12 mx-auto place-items-center grid space-y-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  bg-amber-50 ">
         {pastEvents.length > 0 ? (
           pastEvents.map((event, i) => {
-            return <Cards {...event} userId={userId} />;
+            return <Cards {...event} />;
           })
         ) : (
           <div className="text-amber-600 font-mono mx-auto w-11/12 text-lg font-bold text-center mb-2 mt-4">
