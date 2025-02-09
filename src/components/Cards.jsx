@@ -1,6 +1,7 @@
 import React from "react";
 
-const Cards = ({ image, eventName, description, date, createrName }) => {
+const Cards = ({_id ,image, eventName, description, date, createrName }) => {
+ 
   return (
     <div className=" ">
       <div className="card bg-amber-400 lg:w-80 md:2-80 sm: w-60 shadow-xl">
@@ -11,14 +12,15 @@ const Cards = ({ image, eventName, description, date, createrName }) => {
           <span className="text-base font-semibold ml-2 text-amber-800">
             Event Title: <span>{eventName}</span>
           </span>
-          <p className="text-base ml-2 text-amber-800">{description}</p>
+          <p className="ml-2 text-amber-800 italic text-sm">{description}</p>
           <h2 className="text-base font-semibold ml-2 text-amber-800">
             Organized By: {createrName}
           </h2>
           <h2 className="text-base font-semibold ml-2 text-amber-800">
-            Date-{">"} {date}
+            Date: {date}
           </h2>
         </div>
+        <button type="button" className="btn hover:bg-gray-800 hover:text-white btn-outline text-black w-20 mb-2 mx-auto"> Join</button>
       </div>
     </div>
   );
