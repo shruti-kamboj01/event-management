@@ -24,9 +24,6 @@ const Home = () => {
           Login
         </button>
       </div>
-      <div className="text-amber-400 cursor-pointer">
-        <h1 onClick={() => navigate("/dashboard")}>Guest Login?</h1>
-      </div>
     </div>
   );
 };

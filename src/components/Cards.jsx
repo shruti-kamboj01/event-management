@@ -12,6 +12,7 @@ const Cards = ({
 }) => {
   const { socket } = useContext(socketContext);
   const [attendeeCount, setAttendeeCount] = useState(attendees.length);
+  
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user._id;
   useEffect(() => {
