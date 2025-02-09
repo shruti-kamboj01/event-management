@@ -1,4 +1,4 @@
-b# Event Management Platform
+# Event Management Platform
 
 A full-stack event management platform where users can create, manage, and attend events with real-time updates using **MongoDB, Node.js, Express, Socket.IO, and React**. <br></br>
 
@@ -15,14 +15,14 @@ Prerequisites
    1. cd server 
    2. npm intall 
    3. Create .env file inside server/ and add: 
-   PORT=5000 
-   1. MONGO_URI=your_mongodb_uri 
-   2. JWT_SECRET=your_jwt_secret 
-   3. FOLDER_NAME = cloud_folder 
-   4. API_KEY = cloud_apikey 
-   5. CLOUD_NAME = cloud_name 
-   6. API_SECRET = cloud_api_secret 
-   -> npm start/npm run dev
+      1. PORT=5000 
+      1. MONGO_URI=your_mongodb_uri 
+      3. JWT_SECRET=your_jwt_secret 
+      4. FOLDER_NAME = cloud_folder 
+      5. API_KEY = cloud_apikey 
+      5. CLOUD_NAME = cloud_name 
+      7. API_SECRET = cloud_api_secret 
+   4. npm start/npm run dev
 
 4. Frontend Setup
    1. npm install
