@@ -28,7 +28,7 @@ Prerequisites
 4. Frontend Setup
    1. npm install
    2. npm run dev
-   3. Hosted on -> https://event-management-shruti-kambojs-projects.vercel.app/
+   3. Hosted on ->https://event-management-blush-kappa.vercel.app/
 
 5. Test credentials ->
    1. Name-> Dummy
