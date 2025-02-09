@@ -156,6 +156,7 @@ exports.getAllEvent = async (req, res) => {
         createdBy: true,
         image: true,
         createrName: true,
+        attendees: true
       }
     );
     return res.status(200).json({
