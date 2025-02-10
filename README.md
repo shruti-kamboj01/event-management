@@ -2,10 +2,10 @@
 
 A full-stack event management platform where users can create, manage, and attend events with real-time updates using **MongoDB, Node.js, Express, Socket.IO, and React**. <br></br>
 
-1. Installation & Setup
-Prerequisites  
- 1. Node.js (v18+ recommended) 
- 2. MongoDB (local or MongoDB Atlas)
+ Installation & Setup<br></br>
+1. Prerequisites  
+   1. Node.js (v18+ recommended) 
+   2. MongoDB (local or MongoDB Atlas)
 
 2. Clone the Repository
    1.  https://github.com/shruti-kamboj01/event-management.git 
@@ -28,6 +28,11 @@ Prerequisites
 4. Frontend Setup
    1. npm install
    2. npm run dev
-   3. Hosted on -> https://event-management-shruti-kambojs-projects.vercel.app/  
+   3. Hosted on ->https://event-management-blush-kappa.vercel.app/
+
+5. Test credentials ->
+   1. Name-> Dummy
+   2. UserName -> test04
+   3. password -> 123
 
    
