@@ -42,7 +42,7 @@ const Dashboard = () => {
       <h2 className="text-amber-900 uppercase font-mono mx-auto w-11/12 text-3xl font-bold text-center mb-2 mt-2">
         Past Events
       </h2>
-      <div className="text-black sm:w-3 md:w-full w-11/12 mx-auto place-items-center grid space-y-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  bg-amber-50 ">
+      <div className="text-black sm:w-3 md:w-full w-11/12 mx-auto lg:w-full place-items-center grid space-y-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  bg-amber-50 ">
         {pastEvents.length > 0 ? (
           pastEvents.map((event, i) => {
             return <Cards {...event} />;
