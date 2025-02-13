@@ -16,14 +16,14 @@ const Login = () => {
     }));
   };
 
-   function check() {
+   function checkIfUserExists() {
     if(!localStorage.getItem("user")) {
       alert("Do signup first")
       navigate('/signup')
     }
   }
   useEffect(() => {
-     check() 
+    checkIfUserExists() 
   },[])
 
   const submitHandler = async (e) => {

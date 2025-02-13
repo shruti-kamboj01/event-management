@@ -16,17 +16,26 @@ const Cards = ({
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user._id;
   useEffect(() => {
-    socket.on("update_attendees", ({ eventId, attendees }) => {
-      if (_id == eventId) {
+    const handleUpdateAttendees = ({ eventId, attendees }) => {
+      // console.log(attendees);
+      if (_id === eventId) {
         setAttendeeCount(attendees);
       }
-    });
-  }, [attendeeCount, socket]);
-  const joinEvent = () => {
+    };
+  
+    socket.on("update_attendees", handleUpdateAttendees);
+  
+    return () => {
+      socket.off("update_attendees", handleUpdateAttendees); 
+    };
+  }, [socket]);
+  const joinEvent = (e) => {
+    e.preventDefault();
     socket.emit("join_event", { eventId: _id, userId });
   };
 
-  const leaveEvent = () => {
+  const leaveEvent = (e) => {
+    e.preventDefault();
     socket.emit("leave_event", { eventId: _id, userId });
   };
 
