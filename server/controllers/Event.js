@@ -171,3 +171,16 @@ exports.getAllEvent = async (req, res) => {
     });
   }
 };
+
+// exports.getUserEvents = async(req,res) => {
+//   try{
+//       const userId = req.user.id
+//       const events = await Event.
+//   }catch(error) {
+//     return res.status(404).json({
+//       success: false,
+//       message: `Can't Fetch Event Data`,
+//       error: error.message,
+//     });
+//   }
+// }
