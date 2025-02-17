@@ -14,7 +14,7 @@ function App() {
   const [socket, setSocket] = useState(null);
   const connectSocket = () => {
     if (!socket) {
-      const newSocket = io.connect("https://event-management-1liu.onrender.com/");
+      const newSocket = io.connect("http://localhost:3000/");
       setSocket(newSocket);
     }
   };

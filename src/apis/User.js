@@ -1,4 +1,4 @@
-const BASE_URL = "https://event-management-1liu.onrender.com/v1/user/"
+const BASE_URL = "http://localhost:3000/v1/user/"
 
 export const signup = async(data) => {
     try{
