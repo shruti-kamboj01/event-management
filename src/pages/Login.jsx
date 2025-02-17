@@ -16,21 +16,12 @@ const Login = () => {
     }));
   };
 
-   function checkIfUserExists() {
-    if(!localStorage.getItem("user")) {
-      alert("Do signup first")
-      navigate('/signup')
-    }
-  }
-  useEffect(() => {
-    checkIfUserExists() 
-  },[])
-
   const submitHandler = async (e) => {
     e.preventDefault();
     const res = await login(formdata);
     const token = res.token;
     localStorage.setItem("token", JSON.stringify(token));
+    localStorage.setItem("user", JSON.stringify(res.user))
     connectSocket();
     navigate("/dashboard");
     setFormdata({

@@ -13,7 +13,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  event: [
+  eventAttending: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Event",
+    },
+  ],
+  eventCreated: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Event",

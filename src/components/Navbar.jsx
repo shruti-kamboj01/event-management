@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <div className="flex justify-between w-11/12 mx-auto">
       <div className="flex gap-1.5 mt-4 cursor-pointer text-amber-300 lg:text-base md:text-base sm: text-sm font-semibold">
-        <h1>Profile</h1>
+        <h1 onClick={() => navigate('/profile')} >Profile</h1>
         <h1 className="" onClick={createEventHandler}>
           Create Event
         </h1>

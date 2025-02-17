@@ -39,7 +39,7 @@ exports.createEvent = async (req, res) => {
       },
       {
         $push: {
-          event: event._id,
+          eventCreated: event._id,
         },
       },
       { new: true }

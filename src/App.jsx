@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import { createContext, useState } from "react";
 import io from "socket.io-client";
+import Profile from "./pages/Profile";
 
 const socketContext = createContext(null);
 
@@ -13,7 +14,7 @@ function App() {
   const [socket, setSocket] = useState(null);
   const connectSocket = () => {
     if (!socket) {
-      const newSocket = io.connect("https://event-management-1liu.onrender.com/");
+      const newSocket = io.connect("http://localhost:3000/");
       setSocket(newSocket);
     }
   };
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile/>}/>
         </Routes>
       </socketContext.Provider>
     </div>

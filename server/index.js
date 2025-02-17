@@ -10,6 +10,7 @@ const eventRoutes = require("./routes/Event");
 const { cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const Event = require("./models/Event");
+const User = require("./models/User");
 
 
 
@@ -18,13 +19,13 @@ dbConnect();
 cloudinaryConnect();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://event-management-blush-kappa.vercel.app"],
+    origin: ["http://localhost:5174", "https://event-management-blush-kappa.vercel.app"],
     credentials: true,
   })
 );
 const socketIO = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "https://event-management-blush-kappa.vercel.app"],
+    origin: ["http://localhost:5174", "https://event-management-blush-kappa.vercel.app"],
     credentials: true,
   },
 });
@@ -56,6 +57,14 @@ socketIO.on("connection", (socket) => {
     )
       .populate("attendees")
       .exec();
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { $addToSet: { eventAttending: eventId } },
+        { new: true }
+      )
+        .populate("eventAttending")
+        .exec();
+        // console.log(user)
 
     // Broadcast update to all clients
     socketIO.emit("update_attendees", {

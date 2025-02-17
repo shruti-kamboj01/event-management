@@ -98,3 +98,29 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+exports.userDetails = async (req,res) => {
+    try{
+      
+      const userId = req.user.id;
+      console.log("user",userId)
+       const userDetails = await User.findById(userId,
+           {
+            eventAttending: true,
+            userName:true,
+            name:true,
+            eventCreated:true
+           }
+       ).populate(["eventAttending", "eventCreated"]).exec()
+       return res.status(200).json({
+        success: true,
+        userDetails
+      });
+    }catch(error) {
+      return res.status(404).json({
+        success: false,
+        message: `Can't Fetch User Data`,
+        error: error.message,
+      });
+    }
+}

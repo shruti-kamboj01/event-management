@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { createEvent } from "../apis/Event";
+import { createEvent, updateEvent } from "../apis/Event";
 
-const CreateEvent = ({ setModal }) => {
+const CreateEvent = ({ setModal, editEvent, modal, eventId }) => {
   const [preview, setPreview] = useState(null);
   const [formdata, setformdata] = useState({
     eventName: "",
@@ -37,30 +37,46 @@ const CreateEvent = ({ setModal }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const res = await createEvent(formdata, token);
-    setformdata({
-      eventName: "",
-      description: "",
-      date: "",
-      createrName: "",
-      file: "",
-    });
-    if (formdata) {
-      alert("New event created");
+    if(editEvent) {
+       const res = await updateEvent(formdata, token, eventId);
+       console.log(res)
+       setformdata({
+        eventName: "",
+        description: "",
+        date: "",
+        createrName: "",
+        file: "",
+      });
+       if(res.success) {
+          alert("Event updated")
+       }
+    } else {
+      const res = await createEvent(formdata, token);
+      setformdata({
+        eventName: "",
+        description: "",
+        date: "",
+        createrName: "",
+        file: "",
+      });
+      if (res.success) {
+        alert("New event created");
+      }
     }
+ 
   };
 
   return (
-    <div className="bg-amber-100">
+    <div className="bg-amber-100 text-white">
       <dialog
         id="my_modal_5"
         className="modal modal-open modal-bottom sm:modal-middle"
       >
         <div className="modal-box">
-          <form className="flex flex-col gap-y-2 " onSubmit={submitHandler}>
+          <form className="flex flex-col gap-y-2 w-11/12 mx-auto" onSubmit={submitHandler}>
             <input
               type="file"
-              className="lg:w-fit md:w-fit"
+              className="lg:w-fit md:w-fit sm:w-fit"
               name="file"
               accept="image/*"
               onChange={changeHandler}
@@ -88,7 +104,7 @@ const CreateEvent = ({ setModal }) => {
                 name="eventName"
                 value={formdata.eventName}
                 onChange={changeHandler}
-                className="input input-bordered input-warning w-full max-w-xs"
+                className="input  input-bordered input-warning w-full max-w-xs"
               />
             </label>
             <label>

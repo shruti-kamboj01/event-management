@@ -17,8 +17,7 @@ const Signup = () => {
 
   const submitHandler = async(e) => {
     e.preventDefault()
-    const res = await signup(formdata)
-    localStorage.setItem("user", JSON.stringify(res.user))
+    await signup(formdata)
     setFormdata({
       name:"",
       userName:"",

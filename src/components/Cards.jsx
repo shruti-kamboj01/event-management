@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { socketContext } from "../App";
+import EditEvent from "./EditEvent";
 
 const Cards = ({
   _id,
@@ -39,7 +40,7 @@ const Cards = ({
     socket.emit("leave_event", { eventId: _id, userId });
   };
 
-  return (
+return (
     <div className=" ">
       <div className="card bg-amber-400 lg:w-80 md:w-60 sm:w-60 shadow-xl">
         <figure>
@@ -77,7 +78,9 @@ const Cards = ({
             {" "}
             Leave
           </button>
+        
         </div>
+        <div> <EditEvent eventId = {_id}  /> </div>
       </div>
     </div>
   );
