@@ -103,7 +103,6 @@ exports.userDetails = async (req,res) => {
     try{
       
       const userId = req.user.id;
-      console.log("user",userId)
        const userDetails = await User.findById(userId,
            {
             eventAttending: true,

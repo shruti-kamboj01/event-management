@@ -13,7 +13,6 @@ const Cards = ({
 }) => {
   const { socket } = useContext(socketContext);
   const [attendeeCount, setAttendeeCount] = useState(attendees.length);
-  
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user._id;
   useEffect(() => {
@@ -27,6 +26,7 @@ const Cards = ({
     socket.on("update_attendees", handleUpdateAttendees);
   
     return () => {
+      // console.log("Cleanup running: Removing event listenerin cards");
       socket.off("update_attendees", handleUpdateAttendees); 
     };
   }, [socket]);

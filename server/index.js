@@ -12,8 +12,6 @@ const fileUpload = require("express-fileupload");
 const Event = require("./models/Event");
 const User = require("./models/User");
 
-
-
 const port = process.env.PORT || 3000;
 dbConnect();
 cloudinaryConnect();
@@ -65,7 +63,6 @@ socketIO.on("connection", (socket) => {
       )
         .populate("eventAttending")
         .exec();
-        // console.log(user)
 
     // Broadcast update to all clients
     socketIO.emit("update_attendees", {
@@ -73,10 +70,10 @@ socketIO.on("connection", (socket) => {
       attendees: event.attendees.length,
     });
   });
-
-   socket.on("message", ({message, roomName}) => {
-    console.log(message, roomName)
-    socket.to(roomName).emit("receive-message", message);
+   
+   
+   socket.on("message", ({message, roomName, username}) => {
+    socketIO.to(roomName).emit("receive-message", {message, username});
    })
 
   // Handle user leaving an event

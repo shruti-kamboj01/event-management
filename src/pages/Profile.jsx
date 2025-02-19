@@ -38,7 +38,7 @@ const Profile = () => {
       {!enterChatRoom && (
         <div>
           <div className="text-black ">
-              <h1 className="uppercase">Welcome! {user.name}</h1>
+              <h1 className=" mt-2 font-semibold mb-2">Welcome {user.name}!</h1>
             </div>
         
           {/* events created*/}
@@ -107,7 +107,7 @@ const Profile = () => {
                           <img
                             src={event.image}
                             alt="image"
-                            className="lg:w-full "
+                            className="lg:w-full"
                           />
                         </figure>
                         <span className="text-base font-semibold ml-2 text-amber-800">

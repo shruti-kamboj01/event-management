@@ -1,4 +1,3 @@
-const { default: mongoose } = require("mongoose");
 const Event = require("../models/Event");
 const User = require("../models/User");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
@@ -110,9 +109,9 @@ exports.updateEvent = async (req, res) => {
 
 exports.deleteEvent = async (req, res) => {
   try {
-     console.log("entered")
+    //  console.log("entered")
     const { eventId } = req.body;
-    console.log("event", eventId)
+    // console.log("event", eventId)
     const userId = req.user.id;
     // console.log(typeof(userId))
     const event = await Event.findById(eventId);
@@ -179,15 +178,3 @@ exports.getAllEvent = async (req, res) => {
   }
 };
 
-// exports.getUserEvents = async(req,res) => {
-//   try{
-//       const userId = req.user.id
-//       const events = await Event.
-//   }catch(error) {
-//     return res.status(404).json({
-//       success: false,
-//       message: `Can't Fetch Event Data`,
-//       error: error.message,
-//     });
-//   }
-// }
