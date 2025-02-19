@@ -32,7 +32,7 @@ A full-stack event management platform where users can create, manage, and atten
 
 5. Test credentials ->
    1. Name-> Dummy
-   2. UserName -> test04
-   3. password -> 123
+   2. UserName -> test01
+   3. password -> 1234
 
    
