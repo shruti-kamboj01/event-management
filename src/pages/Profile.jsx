@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getUserDetails } from "../apis/User";
 import { deleteEvent } from "../apis/Event";
 import ChatRoom from "../components/ChatRoom";
-import { GiConsoleController } from "react-icons/gi";
 
 const Profile = () => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -102,7 +101,7 @@ const Profile = () => {
                 {user &&
                   user.eventAttending.map((event, i) => {
                     return (
-                      <div className="card bg-amber-400 lg:w-80 md:w-60 sm:w-60 shadow-xl">
+                      <div className="card bg-amber-400 lg:w-70 md:w-60 sm:w-60 shadow-xl">
                         <figure>
                           <img
                             src={event.image}

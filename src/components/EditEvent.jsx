@@ -31,7 +31,7 @@ const EditEvent = ({eventId}) => {
     <div>
           <button
             type="submit"
-            className= {user && `${userEvents.some(event => event._id === eventId) ? ("btn ml-2 hover:bg-gray-800 hover:text-white btn-outline text-black w-20 mb-2"): (" ml-2 border border-gray-500 text-gray-500 py-1.5 rounded-md w-20 mb-2 cursor-not-allowed ") }`}
+            className= {user && `${userEvents.some(event => event._id === eventId) ? ("btn ml-2 hover:bg-gray-800 hover:text-white btn-outline text-black w-20 mb-2"): (" ml-2 border border-gray-500 text-gray-500 py-1.5 rounded-md w-20 mb-2 cursor-not-allowed ") } md:w-25 sm:w-25 lg:w-30`}
             // className=""
             onClick={editEventDetails}
            >

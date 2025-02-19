@@ -42,7 +42,7 @@ const Cards = ({
 
 return (
     <div className=" ">
-      <div className="card bg-amber-400 lg:w-80 md:w-60 sm:w-60 shadow-xl">
+      <div className="card bg-amber-400 lg:w-70 md:w-60 sm:w-60 shadow-xl">
         <figure>
           <img src={image} alt="image" className="lg:w-full " />
         </figure>
@@ -64,7 +64,7 @@ return (
         <div className="flex gap-2 ml-2">
           <button
             type="button"
-            className="btn hover:bg-gray-800 hover:text-white btn-outline text-black w-20 mb-2"
+            className="btn hover:bg-gray-800 hover:text-white btn-outline text-black md:w-25 sm:w-25 lg:w-30 mb-2"
             onClick={joinEvent}
           >
             {" "}
@@ -72,7 +72,7 @@ return (
           </button>
           <button
             type="button"
-            className="btn hover:bg-gray-800 hover:text-white btn-outline text-black w-20 mb-2"
+            className="btn hover:bg-gray-800 hover:text-white btn-outline text-black md:w-25 sm:w-25 lg:w-30 mb-2"
             onClick={leaveEvent}
           >
             {" "}
