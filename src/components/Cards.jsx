@@ -32,7 +32,7 @@ const Cards = ({
   }, [socket]);
   const joinEvent = (e) => {
     e.preventDefault();
-    socket.emit("join_event", { eventId: _id, userId });
+    socket.emit("join_event", { eventId: _id, userId, eventName });
   };
 
   const leaveEvent = (e) => {

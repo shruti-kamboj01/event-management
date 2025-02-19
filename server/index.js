@@ -49,7 +49,7 @@ socketIO.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
 
   // Handle user joining an event
-  socket.on("join_event", async ({ eventId, userId }) => {
+  socket.on("join_event", async ({ eventId, userId, eventName }) => {
     const event = await Event.findByIdAndUpdate(
       eventId,
       { $addToSet: { attendees: userId } },
@@ -57,6 +57,7 @@ socketIO.on("connection", (socket) => {
     )
       .populate("attendees")
       .exec();
+      socket.join(eventName)
       const user = await User.findByIdAndUpdate(
         userId,
         { $addToSet: { eventAttending: eventId } },
@@ -72,6 +73,11 @@ socketIO.on("connection", (socket) => {
       attendees: event.attendees.length,
     });
   });
+
+   socket.on("message", ({message, roomName}) => {
+    console.log(message, roomName)
+    socket.to(roomName).emit("receive-message", message);
+   })
 
   // Handle user leaving an event
   socket.on("leave_event", async ({ eventId, userId }) => {
