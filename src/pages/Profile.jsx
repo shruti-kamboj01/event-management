@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getUserDetails } from "../apis/User";
+import { deleteEvent } from "../apis/Event";
 
 const Profile = () => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -12,7 +13,14 @@ const Profile = () => {
   useEffect(() => {
     fetchUserDetails();
   }, []);
-  console.log(user);
+
+  const deleteEventHandler = async(eventId) => {
+    const res = await deleteEvent(token, eventId)
+    if(res.success) {
+      alert('Event deleted successfully')
+      fetchUserDetails();
+    }
+  }
   return (
     <div className="w-11/12 mx-auto h-full overflow-auto">
       {/* edit/ delete account */}
@@ -22,9 +30,9 @@ const Profile = () => {
         </div>
       </div>
       {/* events created*/}
-      <div>
+      <div className="flex flex-col gap-4">
         <div className="">
-          <h1 className="text-amber-900 uppercase font-mono mx-auto w-11/12 text-3xl font-bold text-center mb-2 mt-2">
+          <h1 className="text-amber-900  underline uppercase font-mono mx-auto w-11/12 text-3xl font-bold text-center mb-2 mt-2">
             Events Created
           </h1>
           <div className="grid place-items-center gap-y-3 md:grid-cols-2 mx-auto lg:grid-cols-3 sm:grid-cols-1">
@@ -55,15 +63,16 @@ const Profile = () => {
                       Attendees: {event.attendees.length}
                     </h2>
                     <div className="flex mx-auto gap-x-2">
-                    <button className="btn text-base hover:bg-gray-800 hover:text-white btn-outline text-black w-30 mb-2 mt-2">
-                      Chat Group
-                    </button>
-                     {/* TODO: make delete api call */}
-                    <button className="btn text-base hover:bg-red-900 hover:text-white btn-outline text-red-900 w-20 mb-2 mt-2">
-                      Delete
-                    </button>
+                      <button className="btn text-base hover:bg-gray-800 hover:text-white btn-outline text-black w-30 mb-2 mt-2">
+                        Chat Group
+                      </button>
+                      {/* TODO: make delete api call */}
+                      <button className="btn text-base hover:bg-red-900 hover:text-white btn-outline text-red-900 w-20 mb-2 mt-2"
+                      onClick={() => deleteEventHandler(event._id)}
+                      >
+                        Delete
+                      </button>
                     </div>
-                 
                   </div>
                 );
               })}
@@ -71,7 +80,7 @@ const Profile = () => {
         </div>
         {/* events joined */}
         <div>
-          <h1 className="text-amber-900 uppercase font-mono mx-auto w-11/12 text-3xl font-bold text-center mb-2 mt-2">
+          <h1 className="text-amber-900 underline uppercase font-mono mx-auto w-11/12 text-3xl font-bold text-center mb-2 mt-2">
             Events Attending/Attended
           </h1>
           <div className="grid place-items-center gap-y-3 md:grid-cols-2 mx-auto lg:grid-cols-3 sm:grid-cols-1">

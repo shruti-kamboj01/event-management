@@ -110,7 +110,9 @@ exports.updateEvent = async (req, res) => {
 
 exports.deleteEvent = async (req, res) => {
   try {
+     console.log("entered")
     const { eventId } = req.body;
+    console.log("event", eventId)
     const userId = req.user.id;
     // console.log(typeof(userId))
     const event = await Event.findById(eventId);
@@ -128,8 +130,13 @@ exports.deleteEvent = async (req, res) => {
         message: "You are not authorized to delete this event",
       });
     }
-
+    await User.findByIdAndUpdate(
+      userId,
+      {$pull: {eventCreated: eventId}},
+      {new: true}
+    )
     await Event.findByIdAndDelete(eventId);
+ 
 
     return res.json({
       success: true,

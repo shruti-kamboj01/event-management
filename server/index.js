@@ -19,13 +19,13 @@ dbConnect();
 cloudinaryConnect();
 app.use(
   cors({
-    origin: ["http://localhost:5174", "https://event-management-blush-kappa.vercel.app"],
+    origin: ["http://localhost:5173", "https://event-management-blush-kappa.vercel.app"],
     credentials: true,
   })
 );
 const socketIO = new Server(server, {
   cors: {
-    origin: ["http://localhost:5174", "https://event-management-blush-kappa.vercel.app"],
+    origin: ["http://localhost:5173", "https://event-management-blush-kappa.vercel.app"],
     credentials: true,
   },
 });
@@ -81,7 +81,7 @@ socketIO.on("connection", (socket) => {
       eventId,
       { $pull: { attendees: userId } },
       { new: true }
-    ).populate("attendees");
+    ).populate("attendees").exec();
 
     // Broadcast update to all clients
     socketIO.emit("update_attendees", {

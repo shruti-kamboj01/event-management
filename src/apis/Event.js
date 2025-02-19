@@ -69,3 +69,24 @@ export const updateEvent = async(data,token, eventId) => {
         throw error
     }
 }
+
+export const deleteEvent = async(token, eventId) => {
+    console.log(token, eventId)
+    const formdata = new FormData()
+    formdata.append("eventId", eventId)
+    try{
+        const responseData = await fetch(`${BASE_URL}/deleteEvent`, {
+            method:'POST',
+            headers:{
+                "Authorization": `Bearer ${token}`
+            },
+            body:formdata
+        })
+        const res = await responseData.json()
+        return res
+    }catch(error) {
+        console.log("Error in deleting event", error)
+        alert("Something went wrong!")
+        return error;
+    }
+}
